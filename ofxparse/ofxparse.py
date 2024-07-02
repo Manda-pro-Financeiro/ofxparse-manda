@@ -122,12 +122,13 @@ class OfxFile(object):
 
         if enc_type == "USASCII":
             cp = ascii_headers.get("CHARSET", "1252")
+            cp = "1252" if cp == "NONE" else cp
             if cp == "8859-1":
                 encoding = "iso-8859-1"
             else:
                 encoding = "cp%s" % (cp, )
 
-        elif enc_type in ("UNICODE", "UTF-8"):
+        elif enc_type in ("UNICODE", "UTF-8", "UTF - 8"):
             encoding = "utf-8"
 
         codec = codecs.lookup(encoding)
